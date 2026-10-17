@@ -31,10 +31,11 @@ func (x *Tracer) On(ctx context.Context, e *events.Event) {
 	if x == nil || x.tracer == nil || e == nil {
 		return
 	}
-	names := []string{"storage-lock", "create", "lock", "unlock", "watchdog"}
-	name := "storage-lock"
-	if int(e.EventType) >= 0 && int(e.EventType) < len(names) {
-		name = names[e.EventType]
+	// EventType.String() 同时覆盖旧类型（create/lock/unlock/watchdog）与
+	// 新增语义类型（expired/busy/renewed/lost/wait_changed），无需维护位置数组。
+	name := e.EventType.String()
+	if e.EventType == events.EventTypeUnknown {
+		name = "storage-lock"
 	}
 	_, span := x.tracer.Start(ctx, name, oteltrace.WithAttributes(
 		attribute.String("lock.id", e.LockId),
