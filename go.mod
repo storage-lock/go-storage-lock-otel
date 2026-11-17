@@ -16,7 +16,7 @@ require (
 	github.com/golang-infrastructure/go-pointer v0.0.5 // indirect
 	github.com/golang-infrastructure/go-reflect-utils v0.0.0-20221130143747-965ef2eb09c3 // indirect
 	github.com/google/uuid v1.6.0 // indirect
-	github.com/storage-lock/go-storage v0.0.3 // indirect
+	github.com/storage-lock/go-storage v0.1.0 // indirect
 	github.com/storage-lock/go-utils v0.0.2 // indirect
 	go.opentelemetry.io/auto/sdk v1.1.0 // indirect
 	go.opentelemetry.io/otel/metric v1.35.0 // indirect
